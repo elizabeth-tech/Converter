@@ -1,6 +1,6 @@
 ﻿namespace Converter
 {
-    class Control
+    public class Control
     {
         public static string DoConversion(string str, byte p1, byte p2)
         {

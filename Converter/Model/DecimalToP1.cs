@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 
 namespace Converter
 {
@@ -23,27 +24,27 @@ namespace Converter
         {
             double tmp;
             UInt64 tmp3;
-            string result = "";
+            number = "0" + CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator + number;
+            double fraction_part = double.Parse(number);
+            string result = String.Empty;
 
-            number = "0." + number;
-            double fractionPart = double.Parse(number);           
             int k = ((number.Length) * 10) / basis;
             double kk = ((number.Length) * 10.0) / basis;
-
             if (kk > 0 && kk < 1)
                 k = 1;
             while (k > 0)
             {
-                tmp = fractionPart * basis;
+                tmp = fraction_part * basis;
                 tmp3 = System.Convert.ToUInt64(tmp);
                 if (tmp3 > tmp)
                     tmp3--;
-                fractionPart = tmp - tmp3;
+                fraction_part = tmp - tmp3;
                 result += CharOfDigit((byte)tmp3);
                 k--;
             }
             while (result.Length > 0 && result[result.Length - 1] == '0')
                 result = result.Substring(0, result.Length - 1);
+
             return result;
         }
 

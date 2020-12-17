@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 
 namespace Converter
 {
@@ -47,9 +48,9 @@ namespace Converter
         // Выделение дробной и целой части из исходного числа.
         protected void SplitParts(string number, out string integer, out string fraction)
         {
-            string[] ret = number.Split(".".ToCharArray(), 2, StringSplitOptions.None);
+            string[] ret = number.Split('.');
             integer = ret[0];
-            fraction = (ret.Length > 1 ? ret[1] : String.Empty);
+            fraction = ret.Length > 1 ? ret[1] : String.Empty;
         }
 
 
